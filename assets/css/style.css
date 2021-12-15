@@ -21,6 +21,7 @@ ul {
     padding-bottom: 96px;
     position: relative;
     z-index: 2;
+    pointer-events: none;
 }
 
 .p_16 {
