@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>End</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -31,8 +31,8 @@
 }
 
     </style>
-    <main  class="crypto">
-        <section class="section_outer bg_dark-blue section_crypto_hero">
+    <main class="crypto">
+        <section class="section_outer bg_dark-blue section_crypto_hero section_crypto_hero_end">
             <canvas class="waveLinesHero waveLines"></canvas>
 
             <div class="wrapper_content ">
@@ -44,21 +44,9 @@
                         </svg> holywood</h1>
                     <span style="max-width: 440px;"  class="text_center block_center p_16 cl_white">A 1-day Summit dedicated to NFTs, the Blockchain, and Cryptocurrency for leading Entertainment Advisors</span>
                     <div class="section_crypto_block section_crypto_block-flex" style="margin-top: 48px;">
-                        <div class="crypto-timer">
-                            <div id="countdown">
-                                <ul>
-                                  <li><span id="days"></span>Days</li>
-                                  <li><span id="hours"></span>Hours</li>
-                                  <li><span id="minutes"></span>Min.</li>
-                                  <li><span id="seconds"></span>Sec.</li>
-                                </ul>
-                              </div>
-                        </div>
-                        <div class="crypto-progress-contaner">
-                            <div style="width: 55%;" id="crypto-progressbar" class="crypto-progressbar"></div>
-                        </div>
-                        <h6  class="text_center cl_white">Sign-up to receive an email when the next round of tickets are available</h6>
-                        <a href="#" style="margin-top: 12px;" class="crypto-btn">Sign-up to be alerted</a>
+                        <h2 class="text_center cl_white">Online tickets now available!</h2>
+                        <p class="p_16 cl_gray text_center">Come together with the makers, creators, and visionaries behind the crypto movement.</p>
+                        <a href="#" style="margin-top: 12px;" class="crypto-btn">Buy Tickets</a>
                     </div>
                 </div>
             </div>
@@ -185,61 +173,6 @@
             </div>
         </section>
     </main>
-    <script>
-        (function () {
-  const second = 1000,
-        minute = second * 60,
-        hour = minute * 60,
-        day = hour * 24;
-
-    let todayNow = new Date();
-    todayNow = new Date(todayNow.toLocaleString('en-US', { timeZone: 'America/New_York' }))
-    let dd = String(todayNow.getDate()).padStart(2, "0"),
-        mm = String(todayNow.getMonth() + 1).padStart(2, "0"),
-        yyyy = todayNow.getFullYear(),
-        endDate = '01/19/2022';
-        endDateFormat = new Date('January 19, 2022 00:00:00')
-        endDateFormat =  new Date(endDateFormat.toLocaleString('en-US', { timeZone: 'America/New_York' }))
-        endDateFormat = Date.parse(endDateFormat);
-    today = mm + "/" + dd + "/" + yyyy;
-    
-    //end
-    let dateStart = new Date('December 14, 2021 00:00:00');
-        dateStart = new Date(dateStart.toLocaleString('en-US', { timeZone: 'America/New_York' }))
-        dateStart = Date.parse(dateStart)
-        todayNow = Date.parse(todayNow)
-        let firstNumberDate = Math.abs(todayNow - dateStart) //целое число
-        let secondNumberDate = Math.abs(endDateFormat - dateStart) //целое число
-
-        let percentDate = Math.round((firstNumberDate/secondNumberDate)*100)
-        document.getElementById("crypto-progressbar").style.width = percentDate + '%'
-    function getDateNumber(distance, param1, param2) {
-        let number = Math.floor((distance % (param1)) / (param2))
-        if(number < 10) {
-            number = '0' + number
-        }
-        return number;
-    }    
-    const countDown = new Date(endDate).getTime(),
-        x = setInterval(function() {    
-
-    
-            const now = new Date().getTime(),
-                distance = countDown - now;
-            document.getElementById("days").innerText = Math.floor(distance / (day)),
-            document.getElementById("hours").innerText = getDateNumber(distance, day, hour),
-            document.getElementById("minutes").innerText = getDateNumber(distance, hour, minute),
-            document.getElementById("seconds").innerText = getDateNumber(distance, minute, second);
-
-            //do something later when date is reached
-            if (distance < 0) {
-            document.getElementById("countdown").style.display = "none";
-            clearInterval(x);
-            }
-            //seconds
-        }, 0)
-    }());
-    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <style>
+        h1, body, h6 {
+            margin: 0;
+
+        }
+     
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <main class="crypto">
+        <section class="section_outer bg_dark-blue section_crypto_hero banner_crypto-container">
+            <canvas class="waveLinesHero waveLines"></canvas>
+
+            <div class="wrapper_content ">
+                <div class="wrapper_crypto">
+                    <div class="banner_crypto">
+                        <div class="banner_crypto__text">
+                            <span class=" p_16 cl_white mb-12">June 2022</span>
+                            <span class=" p_16 cl_white mb-12">Los Angeles - Venue TBA</span>
+                            <h1 class=" cl_white text_uppercase mb-12">Crypto <svg width="37" height="38" viewBox="0 0 37 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0.615234L18.3848 16.66L36.7696 0.615234L20.7248 19L36.7696 37.3848L18.3848 21.34L0 37.3848L16.0448 19L0 0.615234Z" fill="#1890FF"/>
+                                </svg> holywood</h1>
+                            <span style="max-width: 357px;"  class="mb-12 p_16 cl_white">A 1-day Summit dedicated to NFTs, the Blockchain, and Cryptocurrency for leading Entertainment Advisors</span>
+                            
+                        </div>
+    
+                        <div class="section_crypto_block ">
+                            <h5 class="cl_white text_center text_uppercase">tickets now available!</h5>
+                            <a href="#" style="margin-top: 5px;" class="crypto-btn">Buy Tickets</a>
+                            
+                        </div>
+                    </div>
+          
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="https://geothermie.es.fr/wp-content/themes/es-geothermie/assets/js/vendors/CustomEase.min.js?ver=4.9.5"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+    <!-- <script src="assets/js/script.js"></script> -->
+    <script id="rendered-js">
+
+        
+        
+        // var datGUI = new dat.GUI();
+        
+        // datGUI.add(guiControls, 'period', 1, 100);
+        // datGUI.add(guiControls, 'amplitude', 1, 100);
+        // datGUI.add(guiControls, 'waveSpeed', -20, 20);
+        var sinus = new CustomEase("sinus", "M0.4,181.7C292.3,67.5,380.2,1,532.2,1c215,0,266.6,156,637.2,156 s596.3-139.6,959.9-139.6C2718.8,17.4,3348,189,3792.8,189");
+        var sinusRef = new CustomEase("sinusRef", "M0.2,214.2C292.1,100,393.4,0.5,532.1,0.5s266.6,199,637.2,199s511.1-149.6,959.9-149.6 s1252.1,164.2,1759.1,164.2");
+        function waveLines (elem, color, type) {
+            
+            // window.requestAnimFrame = function ()
+            // {
+            // return (
+            //     window.requestAnimationFrame ||
+            //     window.webkitRequestAnimationFrame ||
+            //     window.mozRequestAnimationFrame ||
+            //     window.oRequestAnimationFrame ||
+            //     window.msRequestAnimationFrame ||
+            //     function ( /* function */callback) {
+            //     window.setTimeout(callback, 1000 / 60);
+            //     });
+            
+            // }();
+            
+            function getRandomFloat(max) {
+            return Math.random() * Math.floor(max);
+            }
+            
+            function getAmplitudeRandom(amplitude) {
+            return amplitude * getRandomFloat(2);
+            }
+            var guiControls = new function () {
+        
+                this.period = 1;
+                this.amplitude = 25;
+                this.waveSpeed = 2;
+            }();
+            // var canvas = document.getElementById('canvas');
+            var canvas = elem
+            let containerCanvas = elem.parentNode 
+            var ctx = canvas.getContext('2d');
+            
+            // canvas.height = document.body.clientHeight;
+            canvas.height = containerCanvas.offsetHeight;
+            canvas.width = document.body.clientWidth;
+            
+            const canvasHeight = containerCanvas.offsetHeight;
+            const lineStep = 30;
+            const countLines = Math.round(canvasHeight / lineStep)
+            
+            
+            
+            var amplitude = 600;
+            var frequency = 6;
+            var segments = 50;
+            var interval = frequency / segments;
+            var dampener = 6;
+            var dateCoeff = Date.now() * 0.0000000000005;
+            console.log(elem)
+            var amplituderef;
+            
+            
+ 
+            
+            
+            draw_line = function (i, amplitude, offset, start, lineWidth, dampener, sin)
+            {
+            ctx.beginPath();
+            ctx.moveTo(start.x, start.y + amplituderef * Math.sin(x / dateCoeff + i / getRandomFloat(4)));
+            // ctx.moveTo( start.x, start.y + guiControls.amplitude * Math.sin( x / guiControls.period + ( i  / 5 ) ) );
+            ctx.lineWidth = lineWidth || 2;
+            ctx.strokeStyle = color;
+            
+            for (var x = 0; x < segments; x++) {
+                var norm = 1 - x * segments;
+                var t = x / segments;
+                dateCoeff = Date.now() * 0.0000000000005;
+            
+                amplituderef = amplitude * 1 + Math.sin(dateCoeff) * Math.random() / dampener;
+            
+                var y = amplituderef * Math.sin(x / (1 + sin.getRatio(norm)) + i / 8 + type.getRatio(norm));
+                ctx.lineTo(start.x + x * segments, start.y + y);
+            
+            }
+            
+            ctx.stroke();
+            
+            };
+            
+            
+            
+            var i = 0;
+            
+            function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            draw_line(i, '60', '100', {x: -20, y: -30}, '0.3', '5', type);
+            for(let j = 0; j <= countLines + 1; j++) {
+                draw_line(i, '60', '100', {x: -20, y: lineStep * j}, '0.3', '5', type);
+            }
+
+            
+            requestAnimationFrame(render);
+            
+            i += guiControls.waveSpeed / 10;
+            
+            }
+            
+            render();
+        }
+        let waveLinesHero = document.querySelector('.waveLinesHero');
+        waveLines(waveLinesHero, 'rgba(255,255,255,1)', sinus);
+      
+            </script>
+</body>
+</html>
